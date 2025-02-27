@@ -175,6 +175,7 @@ Para evitar esto, podemos editar el archivo variables.tf, dandole un valor por d
 variable "name_function" {
   type = string
   default = "roufunction"
+  description = "Name Function"
 }
 ```
 Debe ir con el nombre name_function, porque es el nombre que le dimos en el archivo main.tf
