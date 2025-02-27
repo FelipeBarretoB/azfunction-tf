@@ -144,3 +144,46 @@ Para eliminar la infraestructura creada, se puede utilizar:
 ```bash
 terraform destroy --var-file="dev.tfvars" -auto-approve
 ```
+
+### **Documentación de recursos**
+Antes que todo, debemos iniciar sension usando azure, para esto usamos el comando:
+```bash
+az login
+```
+
+luego, para ver nuestra id usando el comando:
+```bash
+az account list
+```
+
+y añadimos esto en el archivo main.tf, de la siguiente manera:
+```terraform
+provider "azurerm" {
+  features {}
+  subscription_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+``` 
+no pongas tu id en linea porque te la roban :D
+
+Ahora, al correr esto nos pide entrar la variable: "name_function" por consola, como lo vemos en la siguiente foto:
+
+![antes de tfvars](./Ss-antes-de-tfvars.png)
+
+Para evitar esto, podemos editar el archivo variables.tf, dandole un valor por defecto a la variable, de la siguiente manera:
+
+```terraform
+variable "name_function" {
+  type = string
+  default = "roufunction"
+}
+```
+Debe ir con el nombre name_function, porque es el nombre que le dimos en el archivo main.tf
+
+
+![despues de tfvars](./Ss-despues-de-tfvars.png)
+
+Ahora, nos metemos a azure para ver la funcion creada, como lo vemos en la siguiente foto:
+
+![funcion en azure](./Ss-prueba-de-que-funciona.png)
+
+y listo :D
